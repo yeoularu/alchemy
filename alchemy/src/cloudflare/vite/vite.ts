@@ -35,8 +35,9 @@ export async function Vite<B extends Bindings>(
       port = args[index + 1];
     } else {
       try {
-        const config = await withSkipPathValidation(() =>
-          import(path.resolve(props.cwd ?? process.cwd(), "vite.config.ts")),
+        const config = await withSkipPathValidation(
+          () =>
+            import(path.resolve(props.cwd ?? process.cwd(), "vite.config.ts")),
         );
         port = config.default?.server?.port ?? 5173;
       } catch {}
